@@ -5,7 +5,7 @@ FROM openjdk:${OPENJDK_VERSION}
 # Reference default value
 ARG OPENJDK_VERSION
 #https://github.com/nodesource/distributions/blob/master/README.md
-ARG NODEJS_VERSION=20
+ARG NODEJS_VERSION=14
 #https://gradle.org/releases/
 ARG GRADLE_VERSION=7.6.3
 #https://www.npmjs.com/package/cordova?activeTab=versions
@@ -47,3 +47,5 @@ RUN curl -so /tmp/commandlinetools-linux-${ANDROID_CMDTOOLS_VERSION}_latest.zip 
 # Update and accept licences
 COPY android.packages android.packages
 RUN ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | sdkmanager --package_file=android.packages
+
+RUN ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | sdkmanager "build-tools;32.0.0"
